@@ -31,6 +31,9 @@ const fetchAlerts = async ({
           ticker__market_capital: marketCap,
           riskLevel: riskLevel,
         },
+        headers: {
+          Authorization: `Token ${localStorage.getItem("userToken")}`, // Replace `yourToken` with the actual token
+        },
   });
   return response.data;
 };
@@ -133,7 +136,7 @@ function DataTable({
         <div className="h-16 w-16 rounded-full border-8 border-solid border-r-transparent border-[#53ACFF] animate-spin"></div>
       </div>
     );
-  if (status === "error") return <h1>Error loading data</h1>;
+  if (status === "error") return <h1>Error loading data...</h1>;
 
   return (
     <InfiniteScroll
